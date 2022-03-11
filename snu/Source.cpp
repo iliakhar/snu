@@ -8,7 +8,7 @@
 
 
 int main() {
-	Size equationSize = { 2, 3 };
+	Size equationSize = { 2, 2 };
 
 	Variable** equation = new Variable * [equationSize.first];
 	for (int i = 0; i < equationSize.first; i++)
@@ -18,12 +18,10 @@ int main() {
 	for (int i = 0; i < equationSize.first; i++)
 		devEquation[i] = new Variable[equationSize.first];
 
-	equation[0][0].Add(std::vector<double>{1, 2, 0}, 1);
-	equation[0][1].Add(std::vector<double>{1, 0, 3}, 1);
-	equation[0][2].Add(std::vector<double>{-4, 0, 0}, 1);
+	equation[0][0].Add(std::vector<double>{1, 2, 1}, 1);
+	equation[0][1].Add(std::vector<double>{-3, 0, 0}, 1);
 	equation[1][0].Add(std::vector<double>{1, 1, -1}, 1);
 	equation[1][1].Add(std::vector<double>{-2, 0, 0}, 1);
-	equation[1][2].Add(std::vector<double>{0, 0, 0}, 1);
 
 	for (int i = 0; i < equationSize.first; i++) {
 		for (int j = 0; j < equationSize.second; j++)

@@ -28,17 +28,17 @@ public:
 		var.insert(var.end(), v.begin(), v.end());
 	}
 	double& operator()(int row, int col) {
-		return var[row * varSize.first + col];
+		return var[row * varSize.second + col];
 	}
 	void show() {
 		for (int i = 0; i < varSize.first; i++) {
-			if (var[i * varSize.first] > 0)
-				std::cout << "+" << MyAbs(var[i * varSize.first]);
-			else if (var[i * varSize.first] < 0)
-				std::cout << var[i * varSize.first];
+			if (var[i * varSize.second] > 0)
+				std::cout << "+" << MyAbs(var[i * varSize.second]);
+			else if (var[i * varSize.second] < 0)
+				std::cout << var[i * varSize.second];
 			for (int j = 1; j < varSize.second; j++) {
-				if (var[i * varSize.first + j] != 0)
-					std::cout << "X" << j << "^" << var[i * varSize.first + j];
+				if (var[i * varSize.second + j] != 0)
+					std::cout << "X" << j << "^" << var[i * varSize.second + j];
 			}
 		}
 
@@ -48,14 +48,14 @@ public:
 		//deriv.insert(deriv.end(), var.begin(), var.end());
 		for (int i = 0; i < varSize.first; i++) {
 			(*varCount)++;
-			if (deriv[i * varSize.first + rowNum] != 0) {
+			if (deriv[i * varSize.second + rowNum] != 0) {
 
-				deriv[i * varSize.first] *= deriv[i * varSize.first + rowNum];
-				deriv[i * varSize.first + rowNum]--;
+				deriv[i * varSize.second] *= deriv[i * varSize.second + rowNum];
+				deriv[i * varSize.second + rowNum]--;
 			}
 			else
 				for (int j = 0; j < varSize.second; j++)
-					deriv[i * varSize.first + j] = 0;
+					deriv[i * varSize.second + j] = 0;
 		}
 		return deriv;
 	}

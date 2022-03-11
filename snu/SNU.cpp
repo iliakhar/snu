@@ -170,9 +170,6 @@ void reverse(double** mat, int size) {
 		}
 
 	transposition(detMat, size);
-	std::cout << "\n";
-			showMat(detMat, size);
-			std::cout << "\n";
 
 	for (int i = 0; i < size; i++)
 		for (int j = 0; j < size; j++)
