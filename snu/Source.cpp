@@ -48,7 +48,7 @@ int main() {
 		std::cout << "\n";
 	}
 
-	SNU(equationSize, equation, devEquation, std::vector<double>{2, 1}, 0.01);
+	SNU(equationSize, equation, devEquation, std::vector<double>{2, 1}, 0.01, true);
 
 	for (int i = 0; i < equationSize.first; i++) {
 		delete[] equation[i];

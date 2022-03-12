@@ -139,7 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Gaus.cpp" />
     <ClCompile Include="SNU.cpp" />
+    <ClCompile Include="SNU_Gaus.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>

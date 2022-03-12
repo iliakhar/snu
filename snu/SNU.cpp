@@ -1,6 +1,6 @@
 #include"SNU.h"
 
-std::vector<double> SNU(Size equationSize, Variable** equation, Variable** devEquation, std::vector<double> param, double e) {
+std::vector<double> SNU(Size equationSize, Variable** equation, Variable** devEquation, std::vector<double> param, double e, bool isGaus) {
 	std::vector<double> answer = param;
 	int count = 0;
 	double** W = new double * [equationSize.first];
@@ -45,13 +45,13 @@ std::vector<double> SNU(Size equationSize, Variable** equation, Variable** devEq
 		showVec(Fx);
 		std::cout << "\n\nW:\n";
 		showMat(W, equationSize.first);
-		reverse(W, equationSize.first);
-		std::cout << "\nW^-1:\n";
-		showMat(W, equationSize.first);
+		std::vector<double>tmpVec(Fx.size());
+		if(!isGaus)
+			dopsnu(W, tmpVec, Fx);
+		else
+			dopsnuGaus(W, tmpVec, Fx);
 
-		std::cout << "\nAnswer = X - W^-1 * F\n W^-1 * F = ";
-		std::vector<double>tmpVec = Mul(W, Fx);
-		showVec(tmpVec);
+
 		std::cout << "\nAnswer = ";
 		showVec(answer);
 		std::cout << " - ";
@@ -81,6 +81,23 @@ std::vector<double> SNU(Size equationSize, Variable** equation, Variable** devEq
 	for (int i = 0; i < equationSize.first; i++)
 		delete[] W[i];
 	return answer;
+}
+
+void dopsnu(double** W, std::vector<double> &tmpVec, std::vector<double> Fx) {
+	reverse(W, Fx.size());
+	std::cout << "\nW^-1:\n";
+	showMat(W, Fx.size());
+
+	std::cout << "\nAnswer = X - W^-1 * F\n W^-1 * F = ";
+	tmpVec = Mul(W, Fx);
+	showVec(tmpVec);
+}
+
+void dopsnuGaus(double** W, std::vector<double>& tmpVec, std::vector<double> Fx) {
+
+	for (int i = 0; i < Fx.size(); i++)
+		W[i][Fx.size()] = Fx[i];
+	Gaus(W, tmpVec);
 }
 
 double MyPow(double a, int degree) {
